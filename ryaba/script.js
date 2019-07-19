@@ -1,11 +1,54 @@
-let ryabaString = 'Жили-были {var1} да {var2} Была у них {var3} Снесла {var3} {var4}, не простое - золотое - {var1} бил, бил - не разбил - {var2} била, била - не разбила {var5} бежала, {var6} задела, {var4} упало и разбилось. {var1} плачет, {var2} плачет, а {var3} кудахчет: {speach}'
+const ryabaLink = 'https://api.myjson.com/bins/jcmhn';
+const aboutText = 'Домашнее задание по модулю 5';
+
+function getRyabaStory(link) {
+    $.getJSON(link, function() {
+        console.log("success");
+    })
+        .done(function(data) {
+            console.log('success get');
+            console.log(data);
+            return data;
+        })
+        .fail(function() {
+            console.log('error get');
+            return 'ошибка получения JSON'
+        });
+};
+
+function getStory(link) {
+    $.getJSON(link)
+    .done(function(answer) {
+        console.log(answer)
+    }
+    )
+}
+
+let ryabaStory = getRyabaStory(ryabaLink);
+
+function returnAbout(text) {
+    console.log(text)
+    const $result = $('.result');
+    $result.html(text);
+};
 
 
 $(document).ready(function() {
-    $.('.btn').click(function() {
-        const $result = $('.result');
-        $result.hml(ryabaString);
-    })
+    console.log('');
+
+    $("#about").click(function() {
+        returnAbout(aboutText);
+    });
+    
+    $(".btn").click(function() {
+        getRyabaStory(ryabaLink);
+    });
+    
     }
-)
+);
+
+
+/*
+$('.btn').click(testReturn());
+*/
 

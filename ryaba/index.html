@@ -6,89 +6,89 @@
   <title>Курочка Ряба на новый лад</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-  <div class="container">
+  <div class="container header">
     <div class="header clearfix">
       <nav>
         <ul class="nav nav-pills float-right">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="https://2100992.github.io/sf_fs_hw/">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" id="about" href="#" data-toggle="modal" data-target=".modal">
+              About
+            </a>
           </li>
         </ul>
       </nav>
-      <h3 class="text-muted">Курочка Ряба</h3>
+      <h3 class="text-muted">Домашнее задание по 5 модулю</h3>
     </div>
   </div>
 
+
   <div class="container">
-    <h3>Пьеса</h3>
+    <h3>Пьеса "Курочка Ряба"</h3>
     <p>В главных ролях:</p>
-    <form>
-      <div class="form-group">
-        <label for="var1">Персона первая</label>
-        <input type="text" class="form-control" id="var1" placeholder="Дед">
-      </div>
-      <div class="form-group">
-        <label for="var2">Персона вторая</label>
-        <input type="text" class="form-control" id="var2" placeholder="Бабка">
-      </div>
-      <div class="form-group">
-        <label for="var3">Персона третья</label>
-        <input type="text" class="form-control" id="var3" placeholder="Бабка">
-      </div>
-      <div class="form-group">
-        <label for="var4">Предмет</label>
-        <input type="text" class="form-control" id="var4" placeholder="яичко">
-      </div>
-      <div class="form-group">
-        <label for="var5">Персона четвертая</label>
-        <input type="text" class="form-control" id="var5" placeholder="мышка">
-      </div>
-      <div class="form-group">
-        <label for="var6">Часть тела</label>
-        <input type="text" class="form-control" id="var2" placeholder="хвостиком">
-      </div>
-
-      <div class="form-group">
-        <label for="speach">Мораль</label>
-        <textarea class="form-control" name="" id="" rows="3" placeholder="не плачте"></textarea>
-      </div>
-
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal">Создать</button>
-    </form>
   </div>
-  
+  <div class="container">
+
+      <form>
+        <div class="form-group">
+          <label for="var1">Персона первая</label>
+          <input type="text" class="form-control" id="var1" placeholder="Дед">
+        </div>
+        <div class="form-group">
+          <label for="var2">Персона вторая</label>
+          <input type="text" class="form-control" id="var2" placeholder="Бабка">
+        </div>
+        <div class="form-group">
+          <label for="var3">Персона третья</label>
+          <input type="text" class="form-control" id="var3" placeholder="Бабка">
+        </div>
+        <div class="form-group">
+          <label for="var4">Предмет</label>
+          <input type="text" class="form-control" id="var4" placeholder="яичко">
+        </div>
+        <div class="form-group">
+          <label for="var5">Персона четвертая</label>
+          <input type="text" class="form-control" id="var5" placeholder="мышка">
+        </div>
+        <div class="form-group">
+          <label for="var6">Часть тела</label>
+          <input type="text" class="form-control" id="var2" placeholder="хвостиком">
+        </div>    
+        <div class="form-group">
+          <label for="speach">Мораль</label>
+          <textarea class="form-control" name="" id="" rows="3" placeholder="не плачте"></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal">Создать</button>
+      </form>
+
+  </div>
+
   <div class="modal">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="container-fluid">
+        <div class="container">
           <div class="row">
             <div class="col-8">
-              <div class="result"></div>
-                <p>
-                  
-                </p>
+              <p class="result"></p>
             </div>
             <div class="col">
-              <button type="button" class="close btn-primary" data-dismiss="modal">Закрыть</button>
+              <button type="button" class="close" data-dismiss="modal">
+                <h3>Закрыть</h3>
+              </button>
             </div>
           </div>
         </div>
-          
       </div>
     </div>
   </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
