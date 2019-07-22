@@ -4,8 +4,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Курочка Ряба на новый лад</title>
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
@@ -35,41 +35,53 @@
     <p>В главных ролях:</p>
   </div>
   <div class="container">
-
-      <form>
-        <div class="form-group">
-          <label for="var1">Персона первая</label>
-          <input type="text" class="form-control" id="var1" placeholder="Дед">
+    <div class="row">
+      <div class="col-4">
+          <form>
+              <div class="form-group">
+                <label for="var1">Персона первая</label>
+                <input type="text" class="form-control" id="var1" placeholder="Дед">
+              </div>
+              <div class="form-group">
+                <label for="var2">Персона вторая</label>
+                <input type="text" class="form-control" id="var2" placeholder="Бабка">
+              </div>
+              <div class="form-group">
+                <label for="var3">Персона третья</label>
+                <input type="text" class="form-control" id="var3" placeholder="курочка Ряба">
+              </div>
+              <div class="form-group">
+                <label for="var4">Предмет</label>
+                <input type="text" class="form-control" id="var4" placeholder="яичко">
+              </div>
+              <div class="form-group">
+                <label for="var5">Персона четвертая</label>
+                <input type="text" class="form-control" id="var5" placeholder="мышка">
+              </div>
+              <div class="form-group">
+                <label for="var6">Часть тела</label>
+                <input type="text" class="form-control" id="var6" placeholder="хвостиком">
+              </div>    
+              <div class="form-group">
+                <label for="speach">Мораль</label>
+                <textarea class="form-control" name="" id="speach" rows="3" placeholder="не плачте"></textarea>
+              </div>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal">Создать</button>
+            </form>
+      </div>
+      <div class="col">
+        <div class="jumbotron result"></div>
+      </div>
+      <div class="col-1">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
         </div>
-        <div class="form-group">
-          <label for="var2">Персона вторая</label>
-          <input type="text" class="form-control" id="var2" placeholder="Бабка">
-        </div>
-        <div class="form-group">
-          <label for="var3">Персона третья</label>
-          <input type="text" class="form-control" id="var3" placeholder="Бабка">
-        </div>
-        <div class="form-group">
-          <label for="var4">Предмет</label>
-          <input type="text" class="form-control" id="var4" placeholder="яичко">
-        </div>
-        <div class="form-group">
-          <label for="var5">Персона четвертая</label>
-          <input type="text" class="form-control" id="var5" placeholder="мышка">
-        </div>
-        <div class="form-group">
-          <label for="var6">Часть тела</label>
-          <input type="text" class="form-control" id="var2" placeholder="хвостиком">
-        </div>    
-        <div class="form-group">
-          <label for="speach">Мораль</label>
-          <textarea class="form-control" name="" id="" rows="3" placeholder="не плачте"></textarea>
-        </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal">Создать</button>
-      </form>
+      </div>
+    </div>
+      
 
   </div>
-
+<!---
   <div class="modal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -81,6 +93,9 @@
             <div class="col">
               <button type="button" class="close" data-dismiss="modal">
                 <h3>Закрыть</h3>
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
               </button>
             </div>
           </div>
@@ -88,7 +103,7 @@
       </div>
     </div>
   </div>
-
+-->
   <script src="script.js"></script>
 </body>
 </html>
