@@ -1,5 +1,6 @@
 const ryabaLink = 'https://api.myjson.com/bins/jcmhn';
 const aboutText = 'Домашнее задание по модулю 5';
+let story = '';
 
 function getRyabaStory(link) {
     $.getJSON(link, function() {
@@ -8,7 +9,8 @@ function getRyabaStory(link) {
         .done(function(data) {
             console.log('success get');
             console.log(data);
-            return data;
+            story = data;
+            return story;
         })
         .fail(function() {
             console.log('error get');
