@@ -1,8 +1,34 @@
+.page-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+}
+
+.header {
+  grid-row: 1 / 2;
+}
+
+.main {
+  grid-row: 2 / 3;
+}
+
+.buttons {
+  grid-row: 3 / 4;
+}
+
+
+.grid-wrapper {
+  display: grid;
+  /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
+  grid-template-rows: auto;
+  /*grid-gap: 1vw;*/
+  /*max-height: 1vw;*/
+  height: 100%;
+}
+
 .game-field {
   background-color: orange;
-  min-height: 10vh;
-  margin: 1px 1px 1px 1px;
-  line-height: 10vh;
 }
 
 .target {
@@ -10,6 +36,10 @@
   color: white;
   font-size: 24pt;
   text-align: center;
+}
+
+.target h1 {
+  display: inline-block;
 }
 
 .miss {
