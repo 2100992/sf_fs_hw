@@ -32,7 +32,7 @@ function buildGameField(x, y) {
 function round() {
   let divSelector = randomDivId(horisontalDivs, verticalDivs);
   $(divSelector).addClass("target");
-  $(divSelector).html(hits); // помечаем target текущим номером
+  $(divSelector).html(hits+1); // помечаем target текущим номером
 
   if (hits === maxHits) {
     endGame();
