@@ -42,6 +42,7 @@ function round() {
 function endGame() {
   let totalPlayedMillis = getTimestamp() - firstHitTime;
   let totalPlayedSeconds = Number(totalPlayedMillis / 1000).toPrecision(3);
+  $('.gameField').addClass('d-none');
   $("#total-time-played").text(totalPlayedSeconds);
   $('#missies').text(missies);
   $("#win-message").removeClass("d-none");
