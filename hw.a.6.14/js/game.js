@@ -1,10 +1,13 @@
-const numDivs = 36;
+const numDivs = 36; //ЧТО ЭТО?
 const maxHits = 10; //количество попаданий для окончания игры
 
 let horisontalDivs = 6; //размер игрового поля по горизонтали
 let verticalDivs = 6; //размер игрового поля по вертикали
 
+
 let hits = 0;
+let missies = 0;
+
 let firstHitTime = 0;
 
 
@@ -30,8 +33,6 @@ function round() {
   let divSelector = randomDivId(horisontalDivs, verticalDivs);
   $(divSelector).addClass("target");
   $(divSelector).html(hits); // помечаем target текущим номером
-  firstHitTime = getTimestamp()
-  // FIXME: тут надо определять при первом клике firstHitTime
 
   if (hits === maxHits) {
     endGame();
@@ -39,39 +40,58 @@ function round() {
 }
 
 function endGame() {
-  // FIXME: спрятать игровое поле сначала
-
   let totalPlayedMillis = getTimestamp() - firstHitTime;
   let totalPlayedSeconds = Number(totalPlayedMillis / 1000).toPrecision(3);
   $("#total-time-played").text(totalPlayedSeconds);
+  $('#missies').text(missies);
   $("#win-message").removeClass("d-none");
 }
 
 function handleClick(event) {
-  // FIXME: убирать текст со старых таргетов. Кажется есть .text?
   if ($(event.target).hasClass("target")) {
     $(event.target).removeClass("target");
     $(event.target).html("");
+    $('.miss').removeClass('miss');
     hits = hits + 1;
-    round();
+    if (hits >= maxHits) {
+      endGame();
+    }
+    else {
+      round();
+    }
   }
   else {
-    $(event.target).hasClass("miss");
+    $(event.target).addClass("miss"); // Отмечаем если мы промахнулись
+    missies++;
   }
   
-  // TODO: как-то отмечать если мы промахнулись? См CSS класс .miss
+ 
 }
 
-function init() {
-  // TODO: заказчик просил отдельную кнопку, запускающую игру а не просто по загрузке
-  buildGameField(horisontalDivs, verticalDivs)
-  round();
+function game() {
+  horisontalDivs = $('#x').val();
+  verticalDivs = $('#y').val();
+  buildGameField(horisontalDivs, verticalDivs);
+  $("#button-reload").removeClass('d-none')
 
   $(".game-field").click(handleClick);
-
   $("#button-reload").click(function() {
     location.reload();
   });
+
+  round();
+
+}
+
+function init() {
+  $("#button-start").click(function() {
+    $("#button-start").addClass('d-none');
+    $("#game-conditions").addClass('d-none');
+    firstHitTime = getTimestamp();
+    game()
+  });
+  
+
 }
 
 $(document).ready(init);
