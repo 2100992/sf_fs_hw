@@ -17,13 +17,14 @@ flowers = {
 }
 
 def get_mean_param(flowers, param):
-    mean_param = 0
+    sumOfValues = 0
     count = 0
     for flower in flowers:
         for value in flowers[flower][param]:
-            mean_param = mean_param + value
+            sumOfValues = sumOfValues + value
             count += 1
-    return mean_param / count
+    mean_param = sumOfValues / count
+    return mean_param
 
 
 # выше были данные, а после этой строчки
