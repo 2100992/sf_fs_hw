@@ -1,6 +1,7 @@
-from collections import defaultdict
+from collections import defaultdict, Counter
+import json
 
-FILENAME = 'dummy-access.log'
+FILENAME = './hw.b.2/dummy-access.log'
 
 def parse_line(text_line):
     dict_from_line = {}
@@ -9,28 +10,42 @@ def parse_line(text_line):
     dict_from_line['user_agent'] = text_line.split('"')[1]
     return dict_from_line
 
-def getJSON(data):
-    dd = []
-    for stringLog in data:
-        dd.append(parse_line(stringLog))
-    return dd
+def getSerLog(data):
+    serLog = []
+    for text_line in data:
+        serLog.append(parse_line(text_line))
+    return serLog
 
 def getIpCount(data, ip):
     counter = 0
     for line in data:
-        if ip in line:
+        if line['ip'] == ip:
             counter += 1
     return counter
+
+def getMeanNumberOfRequests(JSONdata):
+    pass
+
+def fuulIpCounter(JSONdata):
+    c = Counter()
+    for record in JSONdata:
+        c[record['ip']] += 1
+    return c
 
 def main():
     with open(FILENAME) as fp:
         text_lines = fp.readlines()
 
-    dd = getJSON(text_lines)
+    serialized_log = getSerLog(text_lines)
 
-    print(dd[0:10])
-    print(len(dd))
-    print(counter(dd['ip']))
+    #print(serialized_log[0:10])
+    #print(len(serialized_log))
+    #print(counter(serialized_log['ip']))
+
+    #print(serialized_log[0:10])
+    print(fuulIpCounter(serialized_log).most_common()[-1])
+    meanNumberOfRequests = len(serialized_log)/len(fuulIpCounter(serialized_log))
+    print(meanNumberOfRequests)
 
 
 if __name__ == "__main__":
