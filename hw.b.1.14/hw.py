@@ -16,7 +16,7 @@ def getMinTimestampEvent(events):
             sessId = event['sessionId']
     return [minTS, sessId]
 
-def getSuvItemPrice(events):
+def getSumItemPrice(events):
     sumPrice = 0
     for event in events:
         sumPrice += event['item_price']
@@ -35,6 +35,6 @@ print(getEventsCount(events, 'itemBuyEvent'))
 print(getEventsCount(events, 'detectedDuplicate'))
 print(getMinTimestampEvent(events))
 
-print(getSuvItemPrice(events))
+print(getSumItemPrice(events))
 
 print(getFirstSession(events))
