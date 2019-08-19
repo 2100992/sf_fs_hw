@@ -1,7 +1,8 @@
 from tags import HTML, TopLevelTag, Tag
 
 
-with HTML(output="test.html") as doc:
+with HTML(output="hw.b.3/test.html") as doc:
+#with HTML('HTML') as doc:
     with TopLevelTag("head") as head:
         with Tag("title") as title:
             title.text = "hello"
