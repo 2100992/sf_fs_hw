@@ -69,22 +69,16 @@ class Tag:
             self.brothers.append(other)
         return self
 
-
-
 class TopLevelTag(Tag):
     pass
-
-
-
-
 
 class HTML(Tag):
     def __init__(self, *args, is_single = False, **kwargs):
         self.output = kwargs.get('output')
         self.tag = 'HTML'
         self.text = ''
-        self.is_single = is_single
-        self.attributes = kwargs
+        self.is_single = False
+        self.attributes = {}
         self.is_parent = False
         self.children = []
         self.brothers = []
