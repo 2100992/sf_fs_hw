@@ -19,6 +19,8 @@ class Tag:
                 self.attributes['klass'] = ' '.join(self.attributes['klass'])
             self.attributes['class'] = self.attributes.pop('klass') + (' ' + str(self.attributes.get('class','')))
         for attr, value in self.attributes.items():
+            if '_' in attr:
+                attr = attr.replace('_', "-")
             if '_' in value:
                 value = value.replace('_', "-")
             attributes.append(f'{attr}="{value}"')
