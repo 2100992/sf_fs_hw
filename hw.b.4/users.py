@@ -47,15 +47,19 @@ def valid_height(height, gender):
     return True
 
 def valid_birthdate(day):
+    try:
+        day = dt.strptime(day, "%d/%m/%Y" )
+    except:
+        print('Неправильный формат даты. Укажите дату своего рождения в формате дд/мм/ггг: ')
+        return False
     delta = (dt.today() - day)
     age = int(delta.days/365)
     if age not in range (14, 110):
         print(f'Что-то не верится, что вам {age} лет')
         return False
-    return True
+    return day
 
 def request_data():
-#    user_id = str(uuid.uuid4())
     print('Регистрация пользователя!')
     name = input('Укажите своё имя: ')
     last_name = input('Укажите фамилию: ')
@@ -69,14 +73,10 @@ def request_data():
     while not valid_email(email):
         email = input('Укажите корректный адрес электронной почты: ')
     
-    birthdate = input('Укажите дату своего рождения в формате дд/мм/ггг: ')
+    birthdate = ''
     while not isinstance(birthdate, dt):
-        try:
-            birthdate = dt.strptime(birthdate, "%d/%m/%Y" )
-        except:
-            birthdate = input('Неправильный формат даты. Укажите дату своего рождения в формате дд/мм/ггг: ')
-        if not valid_birthdate(birthdate):
-            birthdate = input('Укажите дату своего рождения в формате дд/мм/ггг: ')
+        birthdate = input('Укажите дату своего рождения в формате дд/мм/ггг: ')
+        birthdate = valid_birthdate(birthdate)
 
     height = input('И последнее. Укажите свой рост в сантиметрах: ')
     while not valid_height(height, gender):
@@ -84,7 +84,6 @@ def request_data():
     height = float(height)
 
     user = User(
-#        id=user_id,
         first_name=name,
         last_name=last_name,
         gender = gender,
