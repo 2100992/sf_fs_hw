@@ -25,6 +25,9 @@ def connect_db(DB_PATH):
     return session()
 
 def find(first_name, last_name, session):
+    query = session.query(User).filter(User.first_name=first_name and User.last_name=last_name)
+    users_cnt = query.count()
+    user
 
 
 def main():
