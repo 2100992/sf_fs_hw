@@ -19,6 +19,8 @@ class Tag:
                 self.attributes['klass'] = ' '.join(self.attributes['klass'])
             self.attributes['class'] = self.attributes.pop('klass') + (' ' + str(self.attributes.get('class','')))
         for attr, value in self.attributes.items():
+            if '_' in attr:
+                attr = attr.replace('_', "-")
             if '_' in value:
                 value = value.replace('_', "-")
             attributes.append(f'{attr}="{value}"')
@@ -30,7 +32,7 @@ class Tag:
         if self.is_single:
             self.text = ''
             opening = '<{tag} {attrs}'.format(tag = str(self.tag), attrs = " ".join(attributes))
-            ending = '/>'.format(tag = str(self.tag))
+            ending = '/>'
             return(opening, self.text, ending)                          #self.text оставил только для того, что бы не сбивалась нумерация. Хорошо бы переделать.
         else:
             opening = '<{tag} {attrs}>'.format(tag = str(self.tag), attrs = " ".join(attributes))
