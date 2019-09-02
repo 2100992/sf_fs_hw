@@ -20,27 +20,27 @@ def time_this(num_runs):
 def f1():
     for _ in range(2000000):
         pass
-    return "Закончили процедуры"
+    return f"Закончили 2000000 пустых циклов"
 
 @time_this(num_runs = 10)
 def f2(iterations):
     for _ in range(iterations):
         pass
-    return "Закончили процедуры"
+    return f"Закончили {iterations} пустых циклов"
 
 def f3(iterations):
     for _ in range(iterations):
         pass
-    return "Закончили процедуры"
+    return f"Закончили {iterations} пустых циклов"
 '''
 deco = time_this(10)
 f3 = deco(f3)
 '''
 
 def main():
-    f1()
-    f2(2000000)
-    f3(1000000)
+    print(f1())
+    print(f2(2000000))
+    print(f3(1000000))
 
 if __name__ == "__main__":
     deco = time_this(10)
