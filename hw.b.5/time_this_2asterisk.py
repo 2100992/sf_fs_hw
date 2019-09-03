@@ -26,7 +26,7 @@ class time_this:
             return result
         return wrap
 
-    #засекаем время входа в контекс
+    #засекаем время входа в контекст
     def __enter__(self):
         self.t0 = time()
         return self
