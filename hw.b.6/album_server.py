@@ -1,6 +1,9 @@
+import json
+
 from bottle import route
 from bottle import run
 from bottle import HTTPError
+from bottle import request
 
 import album
 
@@ -17,7 +20,7 @@ def albums(artist):
     return result
 
 @route("/album/<artist>")
-def albums(artist):
+def albums2(artist):
     albums_list = album.find(artist)
     if not albums_list:
         message = "Альбомов {} не найдено".format(artist)
@@ -36,5 +39,29 @@ def artist():
     return result
 
 
+def save_user(user_data):
+    first_name = user_data["first_name"]
+    last_name = user_data["last_name"]
+    filename = "{}-{}.json".format(first_name, last_name)
+
+    with open(filename, "w") as fd:
+        json.dump(user_data, fd)
+    return filename
+
+
+@route("/user", method="POST")
+def user():
+    user_data = {
+        "first_name": request.forms.get("first_name"),
+        "last_name": request.forms.get("last_name"),
+        "birthdate": request.forms.get("birthdate")
+    }
+    resource_path = save_user(user_data)
+    print("User saved at: ", resource_path)
+
+    return "Данные успешно сохранены"
+
+
+
 if __name__ == "__main__":
-    run(host="localhost", port=8080, debug=False)
+    run(host="localhost", port=8080, debug=True)

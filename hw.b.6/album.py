@@ -20,7 +20,6 @@ class Album(Base):
     genre = sa.Column(sa.TEXT)
     album = sa.Column(sa.TEXT)
 
-
 def connect_db():
     """
     Устанавливает соединение к базе данных, создает таблицы, если их еще нет и возвращает объект сессии 
