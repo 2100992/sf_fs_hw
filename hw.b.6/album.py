@@ -44,5 +44,5 @@ def artists():
     Находит все альбомы в базе данных по заданному артисту
     """
     session = connect_db()
-    artists = session.query(Album, Album.artist).all()
-    return artists
+    artist = session.query(Album).all()
+    return artist
