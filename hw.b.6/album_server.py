@@ -1,11 +1,18 @@
 import json
 
-from bottle import route
+from bottle import route, post
 from bottle import run
 from bottle import HTTPError
 from bottle import request
+from bottle import view
 
 import album
+
+@route("/")
+@view('index')
+def artist():
+    return {"artists": album.artists()}
+
 
 @route("/albums/<artist>")
 def albums(artist):
@@ -31,14 +38,17 @@ def albums2(artist):
         result += "<br>".join(album_names)
     return result
 
-@route("/")
-def artist():
-    artists_list = album.artists()
-    aritst_name = [artist.artist for artist in artists_list]
-    result = '<br>'.join(aritst_name)
-    return result
+@post('/albums')
+def post_album():
+    album_info = {
+        'year': request.forms.get("year"),
+        'artist': request.forms.get("artist"),
+        'genre': request.forms.get("genre"),
+        'album': request.forms.get("album"),
+    }
+    album.save_album(album_info)
 
-
+'''
 def save_user(user_data):
     first_name = user_data["first_name"]
     last_name = user_data["last_name"]
@@ -61,7 +71,7 @@ def user():
 
     return "Данные успешно сохранены"
 
-
+'''
 
 if __name__ == "__main__":
     run(host="0.0.0.0", port=8080, debug=True)
