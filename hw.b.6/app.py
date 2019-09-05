@@ -6,7 +6,7 @@ from bottle import HTTPError
 from bottle import request
 from bottle import view
 
-import album
+import plugins.album as album
 
 @route("/")
 @view('index')
