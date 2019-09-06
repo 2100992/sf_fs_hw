@@ -61,3 +61,17 @@ def save_album(album_info):
     session.add(album)
     session.commit()
     pass
+
+def check_album(album_info):
+    print(f"album_info['artist'] = {album_info['artist']}")
+    print(f"album_info['album'] = {album_info['album']}")
+    session = connect_db(DB_PATH)
+    desired_album = session.query(Album).\
+        filter(Album.artist == album_info['artist'], Album.album == album_info['album'])
+    dacount = desired_album.count()
+    print(f'desired_album.count() = {dacount}')
+    if dacount != 0:
+        for album in desired_album.all():
+            print(f'{album.artist}, {album.album}')
+        return False
+    return True

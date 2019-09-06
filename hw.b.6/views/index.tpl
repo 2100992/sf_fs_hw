@@ -10,7 +10,7 @@
             <p>В настоящее время доступна информация о следующих группах:</p>
             <ul class="list-group">
                 % for artist in artists:
-                <li class="list-group-item">{{ artist }}</li>
+                <li class="list-group-item"><a text-decoration=None href='/albums/{{ artist }}'>{{ artist }}</a></li>
                 % end
             </ul>
         </div>
