@@ -15,6 +15,7 @@ def artist():
 
 
 @route("/albums/<artist>")
+@view('albums')
 def albums(artist):
     albums_list = album.find(artist)
     if not albums_list:
@@ -22,8 +23,8 @@ def albums(artist):
         result = HTTPError(404, message)
     else:
         album_names = [album.album for album in albums_list]
-        result = "Список альбомов {}: ".format(artist)
-        result += ", ".join(album_names)
+        message = "Список альбомов {}: ".format(artist)
+        result = {'message':message, 'album_names':album_names}
     return result
 
 @route("/album/<artist>")
