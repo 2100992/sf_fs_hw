@@ -40,7 +40,7 @@ def find(artist):
 
 def artists():
     """
-    Находит все альбомы в базе данных по заданному артисту
+    Возвращает список артистов из базы
     """
     session = connect_db(DB_PATH)
     artists = session.query(Album).all()
@@ -51,6 +51,9 @@ def artists():
     return result
 
 def save_album(album_info):
+    """
+    Запись альбома в БД
+    """
     session = connect_db(DB_PATH)
     album = Album(
         year=album_info['year'],
@@ -62,7 +65,11 @@ def save_album(album_info):
     session.commit()
     pass
 
+
 def check_album(album_info):
+    '''
+    Проверка на наличие в базе у данного артиста такого альбома
+    '''
     print(f"album_info['artist'] = {album_info['artist']}")
     print(f"album_info['album'] = {album_info['album']}")
     session = connect_db(DB_PATH)

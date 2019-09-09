@@ -6,24 +6,24 @@
         <div class="jumbotron">
             <h1 class="display-4">Давайте добавим новый альбом!</h1>
             <ul class="list-group">
-            <form method="post">
+            <form action="/albums" method="POST">
               <div class="form-group">
-                <label for="var1">Артист</label>
-                <input type="text" class="form-control" id="var1" placeholder="Артист">
+                <label for="artist">Артист</label>
+                <input type="text" class="form-control" name="artist" id="artist" placeholder="Артист">
               </div>
               <div class="form-group">
-                <label for="var2">Альбом</label>
-                <input type="text" class="form-control" id="var2" placeholder="Альбом">
+                <label for="album">Альбом</label>
+                <input type="text" class="form-control" name="album" id="album" placeholder="Альбом">
               </div>
               <div class="form-group">
-                <label for="var3">Жанр</label>
-                <input type="text" class="form-control" id="var3" placeholder="Жанр">
+                <label for="genre">Жанр</label>
+                <input type="text" class="form-control" name="genre" id="genre" placeholder="Жанр">
               </div>
               <div class="form-group">
-                <label for="var4">Год</label>
-                <input type="text" class="form-control" id="var4" placeholder="Год">
+                <label for="year">Год</label>
+                <input type="text" class="form-control" name="year" id="year" placeholder="Год">
               </div>    
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal">Создать</button>
+              <button type="submit" class="btn btn-primary">Создать</button>
             </form>
         </div>
     </div>
