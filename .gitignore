@@ -1,4 +1,4 @@
-js/
+.js/
 .vscode/
 5/
 6/
@@ -18,3 +18,4 @@ hw.a.6.14/test.html
 hw.b.6/*.json
 */.venv/*
 */.vscode/
+c1/*
