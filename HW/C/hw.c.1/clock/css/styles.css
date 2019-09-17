@@ -1,0 +1,8 @@
+button{
+    padding: 20px;
+    background: linear-gradient(0deg, rgb(250, 128, 128), rgb(135, 255, 135));
+    border: 1px solid blue;
+    border-radius: 10%;
+    font-family: 'Orbitron';
+    font-size: 2rem;
+  }
