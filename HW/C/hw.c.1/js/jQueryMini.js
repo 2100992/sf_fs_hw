@@ -35,33 +35,23 @@ jQuery.prototype.class = function(name){
 
 jQuery.prototype.html = function(newHTML = undefined){
     if (newHTML === undefined) {
-        this.html = Array.from(this.each(element => element.innerHTML))
-        console.log(this.html)
+        return this.elements[0].innerHTML;
     }
     else{
         this.each(element => element.innerHTML = newHTML)
     }
-    return this
 }
 
 jQuery.prototype.text = function(newText = undefined){
-    this.each(element => element.text(newText))
+  if (newText === undefined) {
+      return this.elements[0].innerText;
+  }
+  else{
+      this.each(element => element.innerText = newText)
+  }
 }
-
 
 const $ = (e) => new jQuery(e);
 
-
-
-const but1 = $('#but1')
-const but2 = $('#but1')
-const but3 = $('#but1')
-const but4 = $('#but1')
-const but = $('button')
-const div = $('div')
-
-// but1.click(() => console.log('but1'))
-
-$('button').hide().show().click(e => console.log(e)).class('name')
 
 
