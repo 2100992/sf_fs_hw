@@ -1,52 +1,169 @@
-const butMin = $('#minutes')
-const butColon = $('#colonBut')
-const butSec = $('seconds')
-const div = $('div')
-const container = $('.container')
-const h1 = $('h1')
-const htmlTest = $('.htmlTest')
+const butMin = $('#minutes');
+const butColon = $('#colonBut');
+const butSec = $('#seconds');
+const h1 = $('h1');
+const htmlTest = $('.htmlTest');
+const tenMinutes = $('#tenMinutes');
+const unitMinutes = $('#unitMinutes');
+const tenSeconds = $('#tenSeconds');
+const unitSeconds = $('#unitSeconds');
+let period = 1000;
+let countDown = false;
+
+function getCurrentTime() {
+    let currentTime = 0;
+    currentTime = currentTime + Number(unitSeconds.text());
+    currentTime = currentTime + Number(tenSeconds.text()*10);
+    currentTime = currentTime + Number(unitMinutes.text()*60);
+    currentTime = currentTime + Number(tenMinutes.text()*600);
+    return currentTime
+};
 
 
-// but1.click(() => console.log('but1'))
+function changeTime(seconds) {
+    currentTime = getCurrentTime();
+    newTime = currentTime + Number(seconds);
+    if (newTime >= 3599) {
+        newTime = 3599;
+        setTime(newTime);
+    }
+    else if(newTime >= 0 && newTime < 3599) {
+        setTime(newTime);
+    }
+    else {
+        setTime(0);
+    }
+}
 
-butMin.click(e => {
-    console.log(e);
+function setTime(time) {
+    console.log(`setTime(${time})`);
+    tm = Math.floor(time/600);
+    time = time - tm*600;
+    um = Math.floor(time/60);
+    time = time - um*60;
+    ts = Math.floor(time/10);
+    time = time - ts*10;
+    us = Math.floor(time/1);
+
+    console.log(`tm = ${tm}, um = ${um}, ts = ${ts}, us = ${us}`);
+
+    tenMinutes.text(tm);
+    unitMinutes.text(um);
+    tenSeconds.text(ts);
+    unitSeconds.text(us);
+};
+
+function finish() {
+    h1.text('FINISH');
+}
+
+butMin.click((e) => {
+    //прочтем с экрана текущее время
+    let currentTime = getCurrentTime();
     //читаем координаты клика
-    let x = e.clientX;
-    let y = e.clientY;
+    let clickX = e.clientX;
+    let clickY = e.clientY;
     //вычисляем середину кнопки
-    let box = but10min.elements[0].getBoundingClientRect();
-    box.middleX = box.left + box.width/2
-    box.middleY = box.top + box.height/2
-    console.log({
-        top: box.top + pageYOffset,
-        left: box.left + pageXOffset
-      });
-    if (y>box.middleY) {
-        but10min.text(Number(but10min.text())-1);
+    boxMiddleX = butMin.middle().x
+    boxMiddleY = butMin.middle().y
+
+    //в зависимости от попадания в определенную четверть кнопки
+    //добавим или убавим необходимое число минут
+    if ((clickY>boxMiddleY) && (clickX>boxMiddleX)) {
+        changeTime(-60)
+        }
+    else if ((clickY>boxMiddleY) && (clickX<boxMiddleX)) {
+        changeTime(-600)
+        }
+    else if ((clickY<boxMiddleY) && (clickX>boxMiddleX)) {
+        changeTime(60)
+        }
+    else if ((clickY<boxMiddleY) && (clickX<boxMiddleX)) {
+        changeTime(600)
+        }
+    }
+)
+
+
+butSec.click((e) => {
+    //прочтем с экрана текущее время
+    let currentTime = getCurrentTime();
+    //читаем координаты клика
+    let clickX = e.clientX;
+    let clickY = e.clientY;
+    //вычисляем середину кнопки
+    boxMiddleX = butSec.middle().x
+    boxMiddleY = butSec.middle().y
+
+    //в зависимости от попадания в определенную четверть кнопки
+    //добавим или убавим необходимое число минут
+    if ((clickY>boxMiddleY) && (clickX>boxMiddleX)) {
+        changeTime(-1)
+        }
+    else if ((clickY>boxMiddleY) && (clickX<boxMiddleX)) {
+        changeTime(-10)
+        }
+    else if ((clickY<boxMiddleY) && (clickX>boxMiddleX)) {
+        changeTime(1)
+        }
+    else if ((clickY<boxMiddleY) && (clickX<boxMiddleX)) {
+        changeTime(10)
+        }
+    }
+)
+
+butColon.click((e) => {
+    dicrementTime2()
+    if (countDown === false){
+        countDown = true;
     }
     else{
-        but10min.text(Number(but10min.text())+1);
+        let clickY = e.clientY;
+        boxMiddleY = butColon.middle().y
+        if (clickY>boxMiddleY) {
+            period = period * 2
+            }
+        else {
+            period = period / 2
+        }
+        console.log(`period = ${period}`)
     }
-    console.log(box)
 })
-// but1.click(() => {
-// 	but.class('btn btn-success');
-// 	h1.text('btn-success')
-// 	htmlTest.html('<h2>h2</h2>')
-// })
-// but2.click(() => {
-// 	but.class('btn btn-danger');
-// 	h1.text('btn-danger')
-// 	htmlTest.html('<h3>h3</h3>')
-// })
-// but3.click(() => {
-// 	but.class('btn btn-warning');
-// 	h1.text('btn-warning')
-// 	htmlTest.html('<h4>h4</h4>')
-// })
-// but4.click(() => {
-// 	but.class('btn btn-primary');
-// 	h1.text('btn-primary')
-// 	htmlTest.html('<h5>h5</h5>')
-// })
+
+
+// let dicrementTime = setInterval(()=>{
+//     currentTime = getCurrentTime()
+//     if ( currentTime >= 1 && countDown) {
+//         if (butColon.text() == ':'){
+//             butColon.text('.');
+//         }
+//         else {
+//             butColon.text(':');
+//             changeTime(-1);
+//             if (currentTime - 1 === 0) {
+//                 clearInterval(dicrementTime);
+//                 finish()
+//             }
+//         }
+//     };
+//     }, period/2)
+
+
+
+
+function dicrementTime2() {
+    if ( currentTime >= 1 && countDown) {
+        if (butColon.text() == ':'){
+            butColon.text('.');
+        }
+        else {
+            butColon.text(':');
+            changeTime(-1);
+            if (currentTime - 1 === 0) {
+                clearTimeout(dicrementTime2);
+                finish()
+            }
+        }
+    };
+    window.setTimeout(dicrementTime2, period/2);
+}

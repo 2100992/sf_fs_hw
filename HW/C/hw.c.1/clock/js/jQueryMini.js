@@ -33,6 +33,8 @@ jQuery.prototype.class = function(name){
   return this;
 }
 
+//функция читает или записывает HTML содержимое объекта
+//работает для первого элемента из группы
 jQuery.prototype.html = function(newHTML = undefined){
     if (newHTML === undefined) {
         return this.elements[0].innerHTML;
@@ -42,12 +44,24 @@ jQuery.prototype.html = function(newHTML = undefined){
     }
 }
 
+//функция читает или записывает текстовое содержимое объекта
+//работает для первого элемента из группы
 jQuery.prototype.text = function(newText = undefined){
   if (newText === undefined) {
       return this.elements[0].innerText;
   }
   else{
       this.each(element => element.innerText = newText)
+  }
+}
+
+//функция вычисляет геометрический центр объекта
+//работает для первого элемента из группы
+jQuery.prototype.middle = function(){
+  let box = this.elements[0].getBoundingClientRect();
+  return {
+    x: box.left + box.width/2,
+    y: box.top + box.height/2
   }
 }
 

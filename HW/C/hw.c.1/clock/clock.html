@@ -5,23 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Orbitron:400,700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <button id="minutes">00</button>
-        <button id="colonBut">:</button>
-        <button id="seconds">00</button>
-
-        <div>
-            <h1>hello</h1>
+    <div class="page-wrapper">
+        <div class="site-header">
+            <div class="helper">
+                <p>
+                    ...<br>
+                    — Откусишь с одной стороны — подрастешь, с другой — уменьшишься…<br>
+                    — С одной стороны чего? И с другой стороны чего?!<br>
+                    — ГРИБА!!<br>
+                    ...
+                </p>
+            </div>
         </div>
-        
-        <div class="htmlTest">
+        <div class="left-sidebar"></div>
+        <div class="main">
+            <div class="clock">
+                <button id="minutes"><span id="tenMinutes">0</span><span id="unitMinutes">0</span></button>
+                <button id="colonBut">:</button>
+                <button id="seconds"><span id="tenSeconds">0</span><span id="unitSeconds">0</span></button>
+            </div>
+        </div>
+        <div class="right-sidebar"></div>
+        <div class="site-footer">
+            <h1>hello</h1>
+            <div class="htmlTest"></div>
         </div>
     </div>
-
     <script src="./js/jQueryMini.js"></script>
     <script src="./js/clock.js"></script>
 </body>
