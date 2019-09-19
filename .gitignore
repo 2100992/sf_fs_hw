@@ -7,8 +7,7 @@ b3/
 b4/
 b5/
 *.pyc
-sochi_athletes.sqlite3
-users.sqlite3
+*.sqlite3
 getJSON/
 guess/
 tmp/
@@ -17,6 +16,7 @@ hw.b.4/sochi_atheletes.sqlite3
 hw.a.6.14/test.html
 hw.b.6/*.json
 */.venv/*
+*/venv/*
 */.vscode/
 c1/*
 HW/B/hw.b.6/.venv/*
