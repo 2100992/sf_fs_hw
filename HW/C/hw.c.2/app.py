@@ -79,4 +79,4 @@ def post_album():
 
 
 if __name__ == "__main__":
-    run(server='gunicorn', host='0.0.0.0', port=80)
+    run(server='gunicorn', host='0.0.0.0', port=8000)
