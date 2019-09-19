@@ -14,9 +14,9 @@ button{
   grid-template-rows: 120px 1fr 100px;
   height: 100vh;
   grid-template-areas:
-    "header header header"
+    "left-sidebar header right-sidebar"
     "left-sidebar main right-sidebar"
-    "footer footer footer";
+    "left-sidebar footer right-sidebar";
 }
 
 .site-header {
