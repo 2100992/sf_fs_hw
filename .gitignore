@@ -20,5 +20,6 @@ hw.b.6/*.json
 */.vscode/
 c1/*
 HW/B/hw.b.6/.venv/*
+HW/C/hw.c.2/.venv/*
 TESTS/
 
