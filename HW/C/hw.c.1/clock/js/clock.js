@@ -9,7 +9,9 @@ const tenSeconds = $('#tenSeconds');
 const unitSeconds = $('#unitSeconds');
 let period = 1000;
 let countDown = false;
+const page_wrapper = $('.page-wrapper');
 
+//функция для чтения с экрана текущего состояния таймера
 function getCurrentTime() {
     let currentTime = 0;
     currentTime = currentTime + Number(unitSeconds.text());
@@ -19,22 +21,7 @@ function getCurrentTime() {
     return currentTime
 };
 
-
-function changeTime(seconds) {
-    currentTime = getCurrentTime();
-    newTime = currentTime + Number(seconds);
-    if (newTime >= 3599) {
-        newTime = 3599;
-        setTime(newTime);
-    }
-    else if(newTime >= 0 && newTime < 3599) {
-        setTime(newTime);
-    }
-    else {
-        setTime(0);
-    }
-}
-
+//функция для записи на экран времени
 function setTime(time) {
     console.log(`setTime(${time})`);
     tm = Math.floor(time/600);
@@ -53,13 +40,32 @@ function setTime(time) {
     unitSeconds.text(us);
 };
 
-function finish() {
-    h1.text('FINISH');
+//Изменение времени на экране.
+//читаем время, изменяем его на указанную величину, пишем обратно
+function changeTime(seconds) {
+    currentTime = getCurrentTime();
+    newTime = currentTime + Number(seconds);
+    if (newTime >= 3599) {
+        newTime = 3599;
+        setTime(newTime);
+    }
+    else if(newTime >= 0 && newTime < 3599) {
+        setTime(newTime);
+    }
+    else {
+        setTime(0);
+    }
 }
 
+//функционал проходящий по завершению таймера
+function finish() {
+    h1.text('FINISH!!!');
+    page_wrapper.hide()
+}
+
+//считываем клики с минутной кнопки.
+//в зависимости от координаты клика прибавляем/убавляем минуты/десяткиМинут
 butMin.click((e) => {
-    //прочтем с экрана текущее время
-    let currentTime = getCurrentTime();
     //читаем координаты клика
     let clickX = e.clientX;
     let clickY = e.clientY;
@@ -84,19 +90,19 @@ butMin.click((e) => {
     }
 )
 
-
+//считываем клики с секундной кнопки.
+//в зависимости от координаты клика прибавляем/убавляем секунды/десяткиСекунд
 butSec.click((e) => {
-    //прочтем с экрана текущее время
-    let currentTime = getCurrentTime();
     //читаем координаты клика
     let clickX = e.clientX;
     let clickY = e.clientY;
+
     //вычисляем середину кнопки
     boxMiddleX = butSec.middle().x
     boxMiddleY = butSec.middle().y
 
     //в зависимости от попадания в определенную четверть кнопки
-    //добавим или убавим необходимое число минут
+    //добавим или убавим необходимое число секунд
     if ((clickY>boxMiddleY) && (clickX>boxMiddleX)) {
         changeTime(-1)
         }
@@ -112,58 +118,43 @@ butSec.click((e) => {
     }
 )
 
+//читаем клики с центральной кнопки.
+//если таймер не запущен, запускаем его, иначе останавливаем.
 butColon.click((e) => {
-    dicrementTime2()
-    if (countDown === false){
-        countDown = true;
-    }
-    else{
-        let clickY = e.clientY;
-        boxMiddleY = butColon.middle().y
-        if (clickY>boxMiddleY) {
-            period = period * 2
-            }
-        else {
-            period = period / 2
+    currentTime = getCurrentTime();
+    if (currentTime >= 1) {
+        if (countDown === false){
+            countDown = true;
+            dicrementTime();
         }
-        console.log(`period = ${period}`)
+        else {
+            countDown = false;
+        }
     }
 })
 
-
-// let dicrementTime = setInterval(()=>{
-//     currentTime = getCurrentTime()
-//     if ( currentTime >= 1 && countDown) {
-//         if (butColon.text() == ':'){
-//             butColon.text('.');
-//         }
-//         else {
-//             butColon.text(':');
-//             changeTime(-1);
-//             if (currentTime - 1 === 0) {
-//                 clearInterval(dicrementTime);
-//                 finish()
-//             }
-//         }
-//     };
-//     }, period/2)
-
-
-
-
-function dicrementTime2() {
-    if ( currentTime >= 1 && countDown) {
+//функция обратного отсчета
+//в функцию входим через нажатие на центральную кнопку
+//если флаг countDown, то рекурсивно вызывает саму себя
+//заодно 
+function dicrementTime() {
+    currentTime = getCurrentTime();
+    if (countDown) {
         if (butColon.text() == ':'){
             butColon.text('.');
+            window.setTimeout(dicrementTime, period/2);
         }
         else {
             butColon.text(':');
-            changeTime(-1);
-            if (currentTime - 1 === 0) {
-                clearTimeout(dicrementTime2);
-                finish()
+            if(currentTime > 1){
+                changeTime(-1);
+                window.setTimeout(dicrementTime, period/2);
             }
-        }
+            else{
+                countDown = false;
+                changeTime(-1);
+                finish()
+            };
+        };
     };
-    window.setTimeout(dicrementTime2, period/2);
 }
