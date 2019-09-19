@@ -78,5 +78,8 @@ def post_album():
     return redirect('/albums/' + album_info['artist'])
 
 
+# if __name__ == "__main__":
+#     run(server='gunicorn', host='0.0.0.0', port=8000)
+
 if __name__ == "__main__":
-    run(server='gunicorn', host='0.0.0.0', port=8000)
+    run(host="0.0.0.0", port=8080, debug=True)
