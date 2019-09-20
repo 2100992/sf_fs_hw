@@ -1,8 +1,8 @@
 body {
-  background-color: black;
   background: url('https://s.vtambove.ru/localStorage/news/3e/18/06/91/3e180691.jpg');
   background-size: 100%;
   background-repeat: space;
+  background-color: black;
 }
 
 button{
